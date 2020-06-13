@@ -54,7 +54,7 @@ def generate2x2():
         except TypeError:
             break
 
-    # if it failes to generate a sudoku, regenerate
+    # if it failes to generate a sudoku, regenerate it
     if sudoku == None:
         generate2x2()
     else:
@@ -91,7 +91,7 @@ def set2x2(sudoku, block, num):
     else:
         return None
 
-# checks if the number is filled correctly (only for 2x2)
+# checks if the number is filled correctly
 def check2x2(sudoku, pos1, pos2, num):
     num = str(num)
     column = [column[pos2] for column in sudoku]
