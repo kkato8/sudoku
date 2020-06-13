@@ -9,7 +9,6 @@ def generate3x3():
     sudoku = [[".", ".", ".", ".",".",".",".",".","."],[".", ".", ".", ".",".",".",".",".","."],[".", ".", ".", ".",".",".",".",".","."],[".", ".", ".", ".",".",".",".",".","."], \
         [".", ".", ".", ".",".",".",".",".","."],[".", ".", ".", ".",".",".",".",".","."],[".", ".", ".", ".",".",".",".",".","."],[".", ".", ".", ".",".",".",".",".","."], \
             [".", ".", ".", ".",".",".",".",".","."]]
-
     poss1 = [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]]
     poss2 = [[0,3],[0,4],[0,5],[1,3],[1,4],[1,5],[2,3],[2,4],[2,5]]
     poss3 = [[0,6],[0,7],[0,8],[1,6],[1,7],[1,8],[2,6],[2,7],[2,8]]
@@ -20,6 +19,7 @@ def generate3x3():
     poss8 = [[6,3],[6,4],[6,5],[7,3],[7,4],[7,5],[8,3],[8,4],[8,5]]
     poss9 = [[6,6],[6,7],[6,8],[7,6],[7,7],[7,8],[8,6],[8,7],[8,8]]
 
+    # place a number in each block in ascending order (1,2,3,4,5,6,7,8,9)
     for num in range(1,10):
         # 0 0 0 | . . . | . . .
         # 0 0 0 | . . . | . . .
@@ -164,9 +164,9 @@ def generate3x3():
             sudoku = set3x3(sudoku, poss9, num)
         except TypeError:
             break
-        
+            
+    # if it failes to generate a sudoku, regenerate it 
     if sudoku == None:
-        print("allover again")
         generate3x3()
     else:
         print()
@@ -186,24 +186,24 @@ def generate3x3():
         print(" ".join(masked[8][0:3]) + " | " +  " ".join(masked[8][3:6]) + " | " +  " ".join(masked[8][6:9]) + "          " + " ".join(sudoku[8][0:3]) + " | " +  " ".join(sudoku[8][3:6])+ " | " +  " ".join(sudoku[8][6:9]))
         print()
 
-# set a number at the designated position 
+# set a number at the designated block
 def set3x3(sudoku, poss, num):
     random.shuffle(poss)
     i = 0
     pos1 = poss[i][0]
     pos2 = poss[i][1]
     #print("pos1: {} pos2: {} num {}".format(pos1,pos2,num))
-    while check3x3(sudoku, pos1, pos2, num) :
+    while check3x3(sudoku, pos1, pos2, num) : # while the number is filled incorrectly
         try : 
             i += 1
-            pos1 = poss[i][0]
-            pos2 = poss[i][1]
+            pos1 = poss[i][0] # change the position
+            pos2 = poss[i][1] # change the position
             #print("pos1: {} pos2: {} num {}".format(pos1,pos2,num))
         except IndexError:
             break
     if i < len(poss):
-        del poss[i]
-        sudoku[pos1][pos2] = str(num)
+        del poss[i] # delete the position
+        sudoku[pos1][pos2] = str(num) # update a sudoku
         return sudoku
     else:
         return None
@@ -320,6 +320,7 @@ def check3x3(sudoku, pos1, pos2, num):
     else:
         return False
 
+# mask numbers randomly
 def mask3x3(masked):
     for i in range(41):
         pos1 = random.randint(0,8)
