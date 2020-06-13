@@ -1,4 +1,4 @@
-# Date: 06/13/20
+# Date: 06/10/20
 # Author: Ken Kato
 # Description: generate a 2x2 sudoku
 import copy
