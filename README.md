@@ -1,9 +1,7 @@
 # sudoku
-sudoku.py is a python program, which generates a sudoku problem and its answer
+sudoku.py is a python program, which generates a sudoku problem and its answer.
 
-This is an example of how to run the code
-
-It will automatically generate a sudoku and its answer
+This is an example of how to run the code. It will automatically generate a sudoku and its answer.
 ```Python
 >>> python sudoku.py
 
